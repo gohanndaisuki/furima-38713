@@ -20,17 +20,17 @@
 
 ## items テーブル
 
-| Column               | Type       | Options                        |
-| -------------------- | ---------- | ------------------------------ |
-| name                 | string     | null: false                    |
-| describe             | text       | null: false                    |
-| category_id          | integer    | null: false                    |
-| condition_id         | integer    | null: false                    |
-| cost_allocation_id   | integer    | null: false                    |
-| prefectures_id       | integer    | null: false                    |
-| delivery_duration_id | integer    | null: false                    |
-| price                | integer    | null: false                    |
-| user                 | references | null: false, foreign_key: true |
+| Column                  | Type       | Options                        |
+| ----------------------- | ---------- | ------------------------------ |
+| name                    | string     | null: false                    |
+| describe                | text       | null: false                    |
+| category_id             | integer    | null: false                    |
+| condition_id            | integer    | null: false                    |
+| shipping_fee_status_id  | integer    | null: false                    |
+| prefecture_id           | integer    | null: false                    |
+| delivery_duration_id    | integer    | null: false                    |
+| price                   | integer    | null: false                    |
+| user                    | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -56,7 +56,7 @@
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | postal_code    | string     | null: false                    |
-| prefectures_id | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
 | city           | string     | null: false                    |
 | address        | string     | null: false                    |
 | Building_name  | text       |                                |
