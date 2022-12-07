@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show]
+  before_action :set_item, except: [:index, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_current_user, only: [:edit, :update, :destroy]
+  #before_action :sold_out_item, only: [:edit]
+
   def index
     @items = Item.all.order("created_at DESC")
   end
@@ -19,8 +22,17 @@ class ItemsController < ApplicationController
   end
 
   def show
-    #@comment = Comment.new
-    #@comments = @prototype.comments.includes(:user)
+  end
+
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
+    end
   end
 
   private
@@ -30,5 +42,13 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_current_user
+    redirect_to root_path unless current_user == @item.user
+  end
+
+  def sold_out_item
+    redirect_to root_path unless @item.order.present?
   end
 end

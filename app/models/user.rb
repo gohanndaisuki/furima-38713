@@ -12,5 +12,5 @@ class User < ApplicationRecord
   validates :first_name_kana,        presence: true, format: { with: /\A[ァ-ヶー－]+\z/ } # フリガナ全角の正規表現
 
   has_many :items
- #has_many :orders
+  has_many :orders
 end
