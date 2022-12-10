@@ -1,14 +1,10 @@
 class OrdersController < ApplicationController
   before_action :set_item
   before_action :authenticate_user!
-  #before_action :set_current_user, only: [:index]
 
   def index
     @order_delivery_address = OrderDeliveryAddress.new
-    unless @item.order.blank?
-      redirect_to root_path
-    end
-    if current_user == @item.user
+    if current_user == @item.user || @item.order.present?
       redirect_to root_path 
     end
   end
