@@ -70,12 +70,12 @@ RSpec.describe OrderDeliveryAddress, type: :model do
         @order_delivery_address.valid?
         expect(@order_delivery_address.errors.full_messages).to include('Tel number is invalid.')
       end
-      it 'tel_numberが9桁以下でないと保存できないこと' do
+      it 'tel_numberが9桁以下では保存できないこと' do
         @order_delivery_address.tel_number = '090123456'
         @order_delivery_address.valid?
         expect(@order_delivery_address.errors.full_messages).to include('Tel number is invalid.')
       end
-      it 'tel_numberが12桁以上でないと保存できないこと' do
+      it 'tel_numberが12桁以上では保存できないこと' do
         @order_delivery_address.tel_number = '090123456789'
         @order_delivery_address.valid?
         expect(@order_delivery_address.errors.full_messages).to include('Tel number is invalid.')
